@@ -49,8 +49,14 @@ df_selection = df.query(
   "Year == @year"
 )
 st.dataframe(df_selection)
-st.image('cam.png' ,use_column_width=None )
-st.sidebar.image('LCA.jpg' ,use_column_width=None )
+
+col1, col2= st.columns(2)
+col1.image('LCA.jpg' ,use_column_width= None)
+col2.image('FILMROLL.jpg',use_column_width=None)
+sidebar= st.sidebar
+
+sidebar.image('cam.png' ,use_column_width=None )
+
 
 st.markdown('---')
 st.subheader('No. of Movies made each year' )
@@ -85,12 +91,12 @@ st.markdown('---')
 
 st.subheader('100 Biggest Budget Movies')
 df2=df.sort_values('budget', ascending=False)
-st.plotly_chart(px.scatter(df2.head(100), x='Movie_Name' , y='budget', color= 'Year',width =1000,  height=800,template='plotly_dark'))
+st.plotly_chart(px.scatter(df2.head(100), x='Movie_Name' , y='budget', color= 'Year',width =1000,  height=800))
 st.markdown('---')
 
 st.subheader('100 Highest Gross Income Movies')
 df3=df.sort_values('Worldwide_gross_income', ascending=False)
-st.plotly_chart(px.scatter(df3.head(100), x='Movie_Name', y='Worldwide_gross_income' ,color= 'Year',width =1000,  height=800,template='plotly_dark'))
+st.plotly_chart(px.scatter(df3.head(100), x='Movie_Name', y='Worldwide_gross_income' ,color= 'Year',width =1000,  height=800))
 st.markdown('---')
 
 
