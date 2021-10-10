@@ -36,23 +36,31 @@ st.text('* try filter from the sidebar to see the requested data.')
 df=pd.read_csv('IMDbmovies.csv')[:65000]
 df.drop(columns=['imdb_title_id', 'title', 'date_published','description','usa_gross_income', 'metascore', ], inplace=True)
 df.rename(columns={'original_title': 'Movie_Name', 'year':'Year', 'genre': 'Genre', 'country': 'Country','worlwide_gross_income': 'Worldwide_gross_income' , 'language': 'Language', 'director': 'Director', 'writer': 'Writer', 'preoduction_company': 'Production Company', 'actors': 'Actors', 'avg_vote': 'Rating', 'reviews_from_users': 'Reviews from users', 'reviews_from_critics': 'Reviews from critics'}, inplace= True)
+df['Genre'] = df['Genre'].apply(lambda a : a.split(',')[0])
+
+
 df.sort_values('Year', ascending=False)
 
-st.sidebar.header("Filter Here:")
+st.sidebar.header("Filter here to get your desired Data in the Dataset :)")
 
 year= st.sidebar.multiselect(
-  "Select the Year:",
+  "First select the Year:",
   options=df["Year"].unique()
 )
 
+genre= st.sidebar.multiselect(
+  "Now, select the Genre:",
+  options=df["Genre"].unique()
+)
+
 df_selection = df.query(
-  "Year == @year"
+  "Year == @year & Genre == @genre"
 )
 st.dataframe(df_selection)
 
 col1, col2= st.columns(2)
-col1.image('LCA.jpg' ,use_column_width= None)
-col2.image('FILMROLL.jpg',use_column_width=None)
+col1.image('LCA.jpg' ,use_column_width= True)
+col2.image('FILMROLL.jpg',use_column_width=True)
 sidebar= st.sidebar
 
 sidebar.image('cam.png' ,use_column_width=None )
