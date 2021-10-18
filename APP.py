@@ -34,7 +34,7 @@ st.markdown('***')
 st.subheader('Dataset for IMDb Movies')
 st.text('* try filter from the sidebar to see the requested data.')
 
-df=pd.read_csv('IMDbmovies.csv')[:65000]
+df=pd.read_csv('IMDbmovies.csv')[:65536]
 
 df.drop(columns=['imdb_title_id', 'title', 'date_published','description','usa_gross_income', 'metascore', ], inplace=True)
 df.rename(columns={'original_title': 'Movie_Name', 'year':'Year', 'genre': 'Genre', 'country': 'Country','worlwide_gross_income': 'Worldwide_gross_income' , 'language': 'Language', 'director': 'Director', 'writer': 'Writer', 'preoduction_company': 'Production Company', 'actors': 'Actors', 'avg_vote': 'Rating', 'reviews_from_users': 'Reviews from users', 'reviews_from_critics': 'Reviews from critics'}, inplace= True)
