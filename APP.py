@@ -56,10 +56,9 @@ genre= st.sidebar.multiselect(
   options=df["Genre"].unique()
 )
 
-rating= st.sidebar.multiselect(
-  "Now, select the Rating:",
-  options=df["Rating"].unique()
-)
+rating= st.sidebar.slider(
+  "Now, select the Rating:", 1,10
+  )
 
 df_selection = df.query(
   "Year == @year & Genre == @genre & Rating== @rating"
