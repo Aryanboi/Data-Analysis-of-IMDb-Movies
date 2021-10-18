@@ -57,7 +57,7 @@ genre= st.sidebar.multiselect(
 )
 
 rating= st.sidebar.slider(
-  "Now, select the Rating:", 1,10
+  "Now, select the Rating:", 1,10,6
   )
 
 df_selection = df.query(
