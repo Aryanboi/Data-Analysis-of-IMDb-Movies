@@ -142,16 +142,7 @@ st.plotly_chart(px.bar( data_frame = df.head(100), x = 'Movie_Name', y='votes', 
 st.markdown('---')
 
 
-
-
-
 st.subheader('3-D visual of the Top-Rated Movies')
 dfx=df[(df['Rating']>=7.9)]
 st.plotly_chart(px.scatter_3d( data_frame = dfx, x = 'Language', y='Country', z= 'Year',color = 'Genre' ,hover_name='Movie_Name',width =1100,  height=900  , template='plotly_dark', size='votes'))
 st.markdown('---')
-
-
-
-
-
-
