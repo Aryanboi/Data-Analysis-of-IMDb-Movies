@@ -34,7 +34,7 @@ st.markdown('***')
 st.subheader('Dataset for IMDb Movies')
 st.text('* try filter from the sidebar to see the requested data.')
 
-df=pd.read_csv('IMDbmovies.csv')[:65536]
+df=pd.read_csv('IMDbmovies.csv')
 
 df.drop(columns=['imdb_title_id', 'title', 'date_published','description','usa_gross_income', 'metascore', ], inplace=True)
 df.rename(columns={'original_title': 'Movie_Name', 'year':'Year', 'genre': 'Genre', 'country': 'Country','worlwide_gross_income': 'Worldwide_gross_income' , 'language': 'Language', 'director': 'Director', 'writer': 'Writer', 'preoduction_company': 'Production Company', 'actors': 'Actors', 'avg_vote': 'Rating', 'reviews_from_users': 'Reviews from users', 'reviews_from_critics': 'Reviews from critics'}, inplace= True)
@@ -110,7 +110,6 @@ st.subheader('100 Biggest Budget Movies')
 df2=df.sort_values('budget', ascending=False)
 st.plotly_chart(px.scatter(df2.head(100), x='Movie_Name' , y='budget', color= 'Year',width =1000,  height=800))
 st.markdown('---')
-
 st.subheader('100 Highest Gross Income Movies')
 df3=df.sort_values('Worldwide_gross_income', ascending=False)
 st.plotly_chart(px.scatter(df3.head(100), x='Movie_Name', y='Worldwide_gross_income' ,color= 'Year',width =1000,  height=800))
@@ -143,6 +142,6 @@ st.markdown('---')
 
 
 st.subheader('3-D visual of the Top-Rated Movies')
-dfx=df[(df['Rating']>=7.9)]
+dfx=df[(df['Rating']>7.9)]
 st.plotly_chart(px.scatter_3d( data_frame = dfx, x = 'Language', y='Country', z= 'Year',color = 'Genre' ,hover_name='Movie_Name',width =1100,  height=900  , template='plotly_dark', size='votes'))
 st.markdown('---')
